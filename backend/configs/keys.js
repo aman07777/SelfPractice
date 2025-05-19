@@ -13,8 +13,11 @@ export default {
         SEND_GRID_KEY:process.env.SEND_GRID,
         HOST_NAME:process.env.HOST_NAME,
         HOST_EMAIL:process.env.HOST_EMAIL 
+    },
+    payment:{
+        STRIPE_KEY:process.env.STRIPE_SECRET,
+        STRIPE_WEBHOOK:process.env.STRIPE_WEBHOOK
     }
-
 
 
 

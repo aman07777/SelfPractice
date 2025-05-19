@@ -9,7 +9,7 @@ import crypto from "crypto"
 
 
 export const registerUser = catchAsync(async(req,res,next)=>{
-  const {email,password,confirmPassword,role} = req.body
+  const {email,password,role} = req.body
 // try{
 //    const result = registerUserSchema.parse(req.body)
 // }
@@ -23,12 +23,9 @@ export const registerUser = catchAsync(async(req,res,next)=>{
   console.log(code)
 
 const expiry = Date.now()+10*60*1000
-  const user = await User.create({email,password,confirmPassword,role,verificationCode:code,verificationExpiryDate:expiry,isVerified:false})
+  const user = await User.create({email,password,role,verificationCode:code,verificationExpiryDate:expiry,isVerified:false})
   if (!user){
     throw new HttpError(404,"user not found")
-  }
-  if(password !== confirmPassword){
-    throw new HttpError(500,"password doesnot match")
   }
   const options ={
     to:user.email,
